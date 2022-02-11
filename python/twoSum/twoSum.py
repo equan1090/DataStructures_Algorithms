@@ -2,6 +2,7 @@
 # If any two numbers in the input array sum up to the target sum, the function should return them in an array, in any order.
 # if no two numbers sum up to the target sum, the function should return an empty array
 
+#O(n) time and space
 def twoNumberSum(array, targetSum):
     my_dict = {}
 
