@@ -39,5 +39,5 @@ def self_dividing(left, right):
                 result.append(i)
     return result
 
-print(self_dividing(1, 22))
+print(self_dividing(1, 100))
 
