@@ -4,6 +4,7 @@ integer representing a targetSum. The function should return all triplets
 in the array that sum up to the garget sum in a two-dimensional array of triplets
 
 '''
+#O(nlogn) time | O(n) space
 def threeNumberSum(array, targetSum):
     array.sort()
     result = []
