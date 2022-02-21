@@ -2,6 +2,7 @@ def findClosest(tree, target):
 
     return bstHelper(tree, target, tree.value)
 
+
 def bstHelper(tree, target, closest):
     if tree is None:
         return closest
@@ -15,7 +16,7 @@ def bstHelper(tree, target, closest):
         return closest
 
 
-#Given Tree
+# Given Tree
 class BST:
     def __init__(self, value):
         self.value = value

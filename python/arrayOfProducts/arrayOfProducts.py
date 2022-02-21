@@ -14,6 +14,5 @@ def arrayOfProducts(array):
         rightRunningProduct *= array[i]
     return products
 
+
 print(arrayOfProducts([5, 1, 4, 2]))
-
-

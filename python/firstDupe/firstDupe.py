@@ -1,5 +1,5 @@
 '''
-Given an array of integers between 1 and n, inclusive, where n i s the length of the array, write a funciton that
+Given an array of integers between 1 and n, inclusive, where n is the length of the array, write a funciton that
 returns the first integer that appears more than once (where the array is read from left to right)
 
 In other words, out of all the integers that occure more than once in the array, your function shouls return the duplicate
@@ -10,7 +10,9 @@ You are allowed to mutate the array
 
 #array = [2, 1, 5, 2, 3, 3, 4]
 
-#O(n) Time | O(1) space
+# O(n) Time | O(1) space
+
+
 def firstDuplicateValue(array):
 
     for value in array:
@@ -21,7 +23,7 @@ def firstDuplicateValue(array):
     return -1
 
 
-#O(n) Time | O(n) Space
+# O(n) Time | O(n) Space
 # def firstDuplicateValue(array):
 #     values = set()
 
