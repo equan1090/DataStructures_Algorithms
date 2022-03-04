@@ -31,4 +31,5 @@ def mergeSort(array):
         k += 1
     return array
 
+print(mergeSort([3, 1, 2, 6, 7, 1, 2]))
 
