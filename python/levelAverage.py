@@ -27,3 +27,32 @@ def fill_levels(root, levels, level_num):
 
     fill_levels(root.left, levels, level_num + 1)
     fill_levels(root.right, levels, level_num + 1)
+
+'''
+Breadth first search
+
+from collections import deque
+def level_averages(root):
+  if root is None:
+    return []
+
+  queue = deque([(root, 0)])
+  result = []
+  avg = []
+  while queue:
+    node, level = queue.popleft()
+    if len(result) == level:
+      result.append([])
+
+    result[level].append(node.val)
+
+    if node.left:
+      queue.append((node.left, level + 1))
+    if node.right:
+      queue.append((node.right, level + 1))
+
+
+  for level in result:
+    avg.append(sum(level) / len(level))
+  return avg
+'''
