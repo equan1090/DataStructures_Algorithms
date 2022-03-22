@@ -17,7 +17,7 @@ def isPalindrome(head):
         fast = fast.next.next
         slow = slow.next
 
-    # reverse
+    # reverse linked list from mid to end
     prev = None
     while slow:
         nxt = slow.next
@@ -25,6 +25,7 @@ def isPalindrome(head):
         prev = slow
         slow = nxt
 
+    #check reversed with head
     left, right = head, prev
     while right:
         if left.val != right.val:
