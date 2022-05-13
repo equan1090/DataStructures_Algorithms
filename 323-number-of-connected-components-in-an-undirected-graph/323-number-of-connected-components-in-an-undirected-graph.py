@@ -4,23 +4,21 @@ class Solution:
         for a, b in edges:
             graph[a].append(b)
             graph[b].append(a)
-        
-        visited = set()
         count = 0
+        visited = set()
         for node in graph:
             if self.traverse(graph, node, visited):
                 count += 1
-        
         return count
-            
-        
         
     def traverse(self, graph, node, visited):
         if node in visited:
             return False
-        visited.add(node)
         
+        visited.add(node)
         for neighbor in graph[node]:
             self.traverse(graph, neighbor, visited)
-        return True
         
+        return True
+                
+    
