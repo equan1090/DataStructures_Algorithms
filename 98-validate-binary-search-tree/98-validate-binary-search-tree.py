@@ -5,23 +5,22 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    # @param root, a tree node
-    # @return a boolean
-    # 7:38
-    def isValidBST(self, root):
-        output = []
-        self.inOrder(root, output)
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
         
-        for i in range(1, len(output)):
-            if output[i-1] >= output[i]:
+        res = []
+        self.inorder(root, res)
+        
+        for i in range(1, len(res)):
+            if res[i - 1] >= res[i]:
                 return False
-
         return True
-
-    def inOrder(self, root, output):
+        
+        
+    def inorder(self, root, res):
         if root is None:
             return
         
-        self.inOrder(root.left, output)
-        output.append(root.val)
-        self.inOrder(root.right, output)
+        self.inorder(root.left, res)
+        res.append(root.val)
+        self.inorder(root.right, res)
+        return res
