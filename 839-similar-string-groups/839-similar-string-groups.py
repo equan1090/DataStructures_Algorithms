@@ -35,4 +35,3 @@ class Solution:
         return True
         
 
-        10000
