@@ -1,29 +1,31 @@
 class Solution:
-    def numSimilarGroups(self, A):
-        """
-        :type A: List[str]
-        :rtype: int
-        """
-        group = 0 
+    def numSimilarGroups(self, strs: List[str]) -> int:
+        D = {}
+        for i in strs:
+            D[i]=[i]
+        n = len(strs[0])
+        for i in range(len(strs)):
+            for j in range(i+1,len(strs)):
+                count=0
+                for k,l in zip(strs[i],strs[j]):
+                    if k!=l:
+                        count+=1
+                        if count>2:
+                            break
+                if count==2:
+                    D[strs[i]].append(strs[j])
+                    D[strs[j]].append(strs[i])
         visited = set()
-        for string_ in A:
-            if(string_ in visited): continue
-            visited.add(string_)
-            self.dfs(string_,A,visited)
-            group += 1
-        return group
-
-    def dfs(self,string_,A,visited):
-        for i in range(len(A)):
-            if(A[i] in visited): continue
-            if(self.similar(A[i],string_)):
-                visited.add(A[i])
-                self.dfs(A[i],A,visited)
-
-    def similar(self,A,B):
-        diff = 0 
-        for i in range(len(B)):
-            if(A[i] != B[i]):
-                diff+= 1
-            if (diff > 2): return False
-        return True
+        comp=0
+        for i in D.keys():
+            if i not in visited:
+                comp+=1
+                visited.add(i)
+                stack = [i]
+                while stack:
+                    cur = stack.pop()
+                    for new in D[cur]:
+                        if new not in visited:
+                            visited.add(new)
+                            stack.append(new)
+        return comp
