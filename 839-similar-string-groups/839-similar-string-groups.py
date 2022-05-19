@@ -1,24 +1,24 @@
 class Solution:
     def numSimilarGroups(self, strs: List[str]) -> int:
-        D = {}
+        graph = {}
         for word in strs:
-            D[word]=[]
+            graph[word]=[]
         n = len(strs[0])
         for i in range(len(strs)):
             for j in range(i+1,len(strs)):
-                count=0
+                differences=0
                 for k,l in zip(strs[i],strs[j]):
                     if k!=l:
-                        count+=1
-                        if count>2:
+                        differences+=1
+                        if differences>2:
                             break
-                if count==2:
-                    D[strs[i]].append(strs[j])
-                    D[strs[j]].append(strs[i])
+                if differences==2:
+                    graph[strs[i]].append(strs[j])
+                    graph[strs[j]].append(strs[i])
         visited = set()
         count = 0
-        for node in D:
-            if self.dfs(D, node, visited):
+        for node in graph:
+            if self.dfs(graph, node, visited):
                 count += 1
         return count
     
