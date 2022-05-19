@@ -12,7 +12,7 @@ class Solution:
                     if strs[i][k] != strs[j][k]:
                         differences+=1
                         if differences>2:
-                            continue
+                            break
                 if differences==2:
                     graph[strs[i]].append(strs[j])
                     graph[strs[j]].append(strs[i])
@@ -34,3 +34,5 @@ class Solution:
             self.dfs(graph, neighbor, visited)
         return True
         
+
+        10000
