@@ -1,9 +1,10 @@
 class Solution:
     def numSimilarGroups(self, strs: List[str]) -> int:
+        #Create adjacency List
         graph = {}
         for word in strs:
             graph[word]=[]
-        n = len(strs[0])
+
         for i in range(len(strs)):
             for j in range(i+1,len(strs)):
                 differences=0
