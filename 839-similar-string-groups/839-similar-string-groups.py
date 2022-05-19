@@ -7,14 +7,15 @@ class Solution:
         for i in range(len(strs)):
             for j in range(i+1,len(strs)):
                 differences=0
-                for k,l in zip(strs[i],strs[j]):
-                    if k!=l:
+                for k in range(len(strs[0])):
+                    if strs[i][k] != strs[j][k]:
                         differences+=1
                         if differences>2:
                             break
                 if differences==2:
                     graph[strs[i]].append(strs[j])
                     graph[strs[j]].append(strs[i])
+                    
         visited = set()
         count = 0
         for node in graph:
