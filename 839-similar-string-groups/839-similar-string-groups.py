@@ -12,7 +12,7 @@ class Solution:
                     if strs[i][k] != strs[j][k]:
                         differences+=1
                         if differences>2:
-                            break
+                            continue
                 if differences==2:
                     graph[strs[i]].append(strs[j])
                     graph[strs[j]].append(strs[i])
