@@ -6,4 +6,4 @@ class Solution:
             if compliment in pairs:
                 return [pairs[compliment], i]
             pairs[num] = i
-        return -1
+        return []
