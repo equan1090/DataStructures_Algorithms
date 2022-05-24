@@ -1,37 +1,31 @@
 class Solution:
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
-        short = nums1
-        long = nums2
-        total = (len(nums1) + len(nums2))
+        A, B = nums1, nums2
+        total = len(nums1) + len(nums2)
         half = total // 2
         
-        if len(short) > len(long):
-            short, long = long, short
+        if len(A) > len(B):
+            A, B = B, A
         
         l = 0
-        r = len(short) - 1
+        r = len(A) - 1
         while True:
             i = (l + r) // 2
             j = half - i - 2
             
-            shortLeft = short[i] if i >= 0 else float('-inf')
-            shortRight = short[i + 1] if (i + 1) < len(short) else float('inf')
-            longLeft = long[j] if j >= 0 else float('-inf')
-            longRight = long[j + 1] if (j + 1) < len(long) else float('inf')
+            aLeft = A[i] if i >= 0 else float('-inf')
+            aRight = A[i + 1] if (i + 1) < len(A) else float('inf')
+            bLeft = B[j] if j >= 0 else float('-inf')
+            bRight = B[j + 1] if (j + 1) < len(B) else float('inf')
             
-            if shortLeft <= longRight and longLeft <= shortRight:
+            if aLeft <= bRight and bLeft <= aRight:
                 
+                #odd
                 if total % 2:
-                    return min(shortRight, longRight)
-                
-                return (max(shortLeft, longLeft) + min(shortRight, longRight)) / 2
+                    return min(aRight, bRight)
+                return (max(aLeft, bLeft) + min(aRight, bRight)) / 2
             
-            elif shortLeft > longRight:
+            elif aLeft > bRight:
                 r = i - 1
             else:
                 l = i + 1
-                
-
-            
-            
-            
