@@ -3,7 +3,7 @@ class Solution:
         if len(s) < 2:
             return s
         start = 0
-        maxLen = 1
+        maxLen = 0
         i = 0
 
         while i < len(s):
