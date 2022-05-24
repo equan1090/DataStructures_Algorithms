@@ -1,32 +1,30 @@
 class Solution:
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
-        n1, n2 = len(nums1), len(nums2)
-        n = n1 + n2
+        A, B = nums1, nums2
+        total = len(nums1) + len(nums2)
+        half = total // 2
         
-        end = n // 2    
-        i, i1, i2  = 0, 0, 0             # Pointer for implict merge list, nums1 pointer, nums2 pointer 
-        current, previous = 0, 0         # current and previous value in implict merge
-        
-        # Implictly build half of the sorted merge list
-        # but only save last values
-        while i <= end:
-            previous = current
-            if i1 == n1:                 # First list is exhausted ==> choose from second list
-                current = nums2[i2] 
-                i2 += 1
-            elif i2 == n2:               # Second list ist exhaused ==> choose from first list
-                current = nums1[i1]
-                i1 += 1
-            elif nums1[i1] < nums2[i2]:  # Choose element from first list
-                current = nums1[i1]
-                i1 += 1
-            else:                        # Choose element from second list
-                current = nums2[i2]      
-                i2 += 1
-
-            i += 1
-        
-        if n % 2 == 0:
-            return (previous + current) / 2.0
-        else: 
-            return current
+        if len(B) < len(A):
+            A, B = B, A
+            
+        l = 0
+        r = len(A) - 1
+        while True:
+            i = (l + r) // 2
+            j = half - i - 2
+            
+            Aleft = A[i] if i >= 0 else float('-inf')
+            Aright = A[i + 1] if (i+1) < len(A) else float('inf')
+            Bleft = B[j] if j >= 0 else float('-inf')
+            Bright = B[j + 1] if (j + 1) < len(B) else float('inf')
+            
+            if Aleft <= Bright and Bleft <= Aright:
+                
+                if total % 2:
+                    return min(Aright, Bright)
+                
+                return (max(Aleft, Bleft) + min(Aright, Bright)) / 2
+            elif Aleft > Bright:
+                r = i - 1
+            else:
+                l = i + 1
