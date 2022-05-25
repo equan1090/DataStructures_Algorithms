@@ -1,7 +1,6 @@
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        if len(s) < 2:
-            return s
+
         start = 0
         maxLen = 0
         i = 0
