@@ -1,10 +1,11 @@
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
         
-        return self.counter(s) == self.counter(t)
+        return self.check(s) == self.check(t)
         
-    def counter(self, s):
+    def check(self, s):
         count = {}
+        
         for c in s:
             if c not in count:
                 count[c] = 0
