@@ -11,5 +11,6 @@ class Solution:
             if key not in freq:
                 freq[key] = []
             freq[key].append(s)
+        
         return freq.values()
-      
+        
