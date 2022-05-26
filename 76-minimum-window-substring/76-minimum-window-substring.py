@@ -1,3 +1,23 @@
+# class Solution:
+#     def minWindow(self, s: str, t: str) -> str:
+#         l = 0
+#         resLen = float('inf')
+#         res = [-1, -1]
+#         tCount = {}
+#         window = {}
+#         have = 0
+#         need = len(t)
+#         for c in t:
+#             tCount[c] = 1 + tCount.get(c, 0)
+        
+#         for r in range(len(s)):
+#             c = s[r]
+#             window[c] = 1 + window.get(c, 0)
+            
+#             if c in window:
+#                 have += 1
+            
+#             while have == need:
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
         if t == "": return ""
@@ -28,3 +48,5 @@ class Solution:
                 l += 1
         l, r = res
         return s[l:r+1]
+                
+            
