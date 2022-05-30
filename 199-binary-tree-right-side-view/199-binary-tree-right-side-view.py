@@ -19,3 +19,4 @@ class Solution:
         
         self.traverse(root.right, level + 1, values)
         self.traverse(root.left, level + 1, values)
+        return values
