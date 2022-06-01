@@ -33,7 +33,7 @@ class Solution:
                 if child not in visited:
                     visited.add(child)
                     q.append((child, path + direction))
-                    
+        return 'NOT FOUND'
             
                 
         
