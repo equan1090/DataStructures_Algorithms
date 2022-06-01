@@ -23,18 +23,16 @@ class Solution:
         
         q = deque([(startValue, '')])
         visited = set()
+        visited.add(startValue)
         
         while q:
             curVal, curPath = q.popleft()
             
-            if curVal in visited:
-                continue
-            visited.add(curVal)
             if curVal == destValue:
                 return curPath
             
             for child, direction in graph[curVal]:
                 if child not in visited:
-                    
+                    visited.add(child)
                     q.append((child, curPath + direction))
                 
