@@ -7,22 +7,24 @@
 class Solution:
     def getDirections(self, root: Optional[TreeNode], startValue: int, destValue: int) -> str:
         graph = defaultdict(list)
+        
         q = deque([root])
         while q:
             node = q.popleft()
-            if node.left:
-                graph[node.val].append((node.left.val, 'L'))
-                graph[node.left.val].append((node.val, 'U'))
-                q.append(node.left)
             
+            if node.left:
+                graph[node.left.val].append((node.val, 'U'))
+                graph[node.val].append((node.left.val, 'L'))
+                q.append(node.left)
             if node.right:
-                graph[node.val].append((node.right.val, 'R'))
                 graph[node.right.val].append((node.val, 'U'))
+                graph[node.val].append((node.right.val, 'R'))
                 q.append(node.right)
         
         q = deque([(startValue, '')])
         visited = set()
         visited.add(startValue)
+        
         while q:
             node, path = q.popleft()
             
@@ -33,7 +35,4 @@ class Solution:
                 if child not in visited:
                     visited.add(child)
                     q.append((child, path + direction))
-        return 'NOT FOUND'
-            
-                
-        
+        return -1
