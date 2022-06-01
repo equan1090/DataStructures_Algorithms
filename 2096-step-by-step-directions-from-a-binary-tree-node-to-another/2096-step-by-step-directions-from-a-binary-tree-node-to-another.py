@@ -27,7 +27,6 @@ class Solution:
         
         while q:
             curVal, curPath = q.popleft()
-            
             if curVal == destValue:
                 return curPath
             
