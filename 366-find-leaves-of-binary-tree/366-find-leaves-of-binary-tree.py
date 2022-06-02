@@ -9,7 +9,7 @@ class Solution:
         res = []
         self._findLeaves(root, res)
         return res
-    
+
     def _findLeaves(self, root, res):
         if root is None:
             return 0
@@ -22,6 +22,6 @@ class Solution:
         if len(res) == level:
             res.append([])
         res[level].append(root.val)
+        
         return level + 1
-    
         
