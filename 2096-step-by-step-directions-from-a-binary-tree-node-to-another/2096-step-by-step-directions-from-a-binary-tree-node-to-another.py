@@ -26,13 +26,14 @@ class Solution:
         visited.add(startValue)
         
         while q:
-            node, path = q.popleft()
+            node, curPath = q.popleft()
             
             if node == destValue:
-                return path
+                return curPath
             
             for child, direction in graph[node]:
                 if child not in visited:
                     visited.add(child)
-                    q.append((child, path + direction))
+                    q.append((child, curPath + direction))
         return -1
+        
