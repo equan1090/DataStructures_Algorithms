@@ -13,5 +13,5 @@ class Solution:
                 q.append((pos + speed, move + 1, speed * 2))
             
                 if (pos + speed > target and speed > 0) or (pos + speed < target and speed < 0):
-                    q.append((pos, move + 1, -speed / abs(speed)))
-            
+                    q.append((pos, move + 1, -1 if speed > 0 else 1))
+                    
