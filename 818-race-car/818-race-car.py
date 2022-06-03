@@ -1,21 +1,13 @@
 class Solution:
     def racecar(self, target: int) -> int:
-        
-        #1. Initialize double ended queue as 0 moves, 0 position, +1 velocity
-        queue = collections.deque([(0, 0, 1)])
-        while queue:
-            
-            # (moves) moves, (pos) position, (vel) velocity)
-            moves, pos, vel = queue.popleft()
-
+        q = deque([(0, 0, 1)])
+        while q:
+            pos, move, speed = q.popleft()
             if pos == target:
-                return moves
+                return move
             
-            #2. Always consider moving the car in the direction it is already going
-            queue.append((moves + 1, pos + vel, 2 * vel))
+            q.append((pos + speed, move + 1, speed * 2))
             
-            #3. Only consider changing the direction of the car if one of the following conditions is true
-            #   i.  The car is driving away from the target.
-            #   ii. The car will pass the target in the next move.  
-            if (pos + vel > target and vel > 0) or (pos + vel < target and vel < 0):
-                queue.append((moves + 1, pos, -vel / abs(vel)))
+            if (pos + speed > target and speed > 0) or (pos + speed < target and speed < 0):
+                q.append((pos, move + 1, -speed / abs(speed)))
+            
