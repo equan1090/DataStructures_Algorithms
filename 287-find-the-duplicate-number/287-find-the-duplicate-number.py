@@ -9,6 +9,6 @@ class Solution:
         
         res = nums[0]
         while res != slow:
-            res = nums[res]
             slow = nums[slow]
+            res = nums[res]
         return res
