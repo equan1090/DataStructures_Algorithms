@@ -1,6 +1,8 @@
+from collections import deque
 class Solution:
     def letterCasePermutation(self, s: str) -> List[str]:
         res = []
+        
         self.permute(s, [], 0, res)
         return res
         
