@@ -1,12 +1,12 @@
-class Solution:
-    # @param num, a list of integer
-    # @return a list of lists of integer
-    def subsetsWithDup(self, S):
-        res = [[]]
-        S.sort()
-        for i in range(len(S)):
-            if i == 0 or S[i] != S[i - 1]:
-                l = len(res)
-            for j in range(len(res) - l, len(res)):
-                res.append(res[j] + [S[i]])
-        return res
+class Solution(object):
+    def subsetsWithDup(self, nums):
+        ret = []
+        self.dfs(sorted(nums), [], ret)
+        return ret
+    
+    def dfs(self, nums, path, ret):
+        ret.append(path)
+        for i in range(len(nums)):
+            if i > 0 and nums[i] == nums[i-1]:
+                continue
+            self.dfs(nums[i+1:], path+[nums[i]], ret)
