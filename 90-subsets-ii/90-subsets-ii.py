@@ -10,3 +10,4 @@ class Solution(object):
             if i > 0 and nums[i] == nums[i-1]:
                 continue
             self.dfs(nums[i+1:], path+[nums[i]], ret)
+            
