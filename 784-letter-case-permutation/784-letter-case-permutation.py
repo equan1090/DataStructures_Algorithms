@@ -11,18 +11,11 @@ class Solution:
             res.append(''.join(path))
             return
         
+        self.permute(s, path + [s[i]], i + 1, res)
+        
         if s[i].isalpha():
-            path.append(s[i].lower())
-            self.permute(s, path, i+1, res)
-            path.pop()
-            path.append(s[i].upper())
-            self.permute(s, path, i+1, res)
-            path.pop()
-        else:
-            path.append(s[i])
-            self.permute(s, path, i+1, res)
-            path.pop()
-            
+            self.permute(s, path + [s[i].swapcase()], i + 1, res)
+        
         
         
             
