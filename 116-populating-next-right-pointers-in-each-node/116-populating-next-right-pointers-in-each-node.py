@@ -9,17 +9,16 @@ class Node:
 """
 
 class Solution:
-    def connect(self, node: 'Optional[Node]') -> 'Optional[Node]':
-        cur = node
-        nxt = node.left if node else None
-        
-        while cur and nxt:
-            cur.left.next = cur.right
-            if cur.next:
-                cur.right.next = cur.next.left
-            
-            cur = cur.next
-            if not cur:
-                cur = nxt
-                nxt = cur.left
-        return node
+    def connect(self, root):
+        if not root:
+            return 
+        queue = [root]
+        while queue:
+            curr = queue.pop(0)
+            if curr.left and curr.right:
+                curr.left.next = curr.right
+                if curr.next:
+                    curr.right.next = curr.next.left
+                queue.append(curr.left)
+                queue.append(curr.right)
+        return root
