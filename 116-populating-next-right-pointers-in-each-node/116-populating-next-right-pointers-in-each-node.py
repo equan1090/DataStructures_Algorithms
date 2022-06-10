@@ -12,9 +12,9 @@ class Solution:
     def connect(self, root):
         if not root:
             return 
-        queue = [root]
+        queue = deque([root])
         while queue:
-            curr = queue.pop(0)
+            curr = queue.popleft()
             if curr.left and curr.right:
                 curr.left.next = curr.right
                 if curr.next:
