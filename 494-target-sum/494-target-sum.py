@@ -1,10 +1,19 @@
 class Solution:
     def findTargetSumWays(self, nums: List[int], target: int) -> int:
-	
-        @lru_cache(None)
-        def dfs(i, target):
-            if i == len(nums):
-                return 1 if target == 0 else 0
-            return dfs(i + 1, target + nums[i]) + dfs(i+1, target - nums[i])
         
-        return dfs(0, target)
+        return self.dfs(nums, target, 0, 0, {})
+    
+    def dfs(self, nums, target, i, curSum, memo):
+        key = (i, curSum)
+        if key in memo:
+            return memo[key]
+        
+        if i == len(nums):
+            return 1 if curSum == target else 0
+        
+        add = self.dfs(nums, target, i+1, curSum + nums[i], memo)
+        subtract = self.dfs(nums, target, i+1, curSum - nums[i], memo)
+        
+        memo[key] = add + subtract
+        return memo[key]
+    
