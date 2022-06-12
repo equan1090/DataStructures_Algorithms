@@ -8,5 +8,5 @@ class Solution:
                 seen.remove(s[l])
                 l += 1
             seen.add(s[r])
-            res = max(res, (r - l + 1))
+            res = max(r - l + 1, res)
         return res
