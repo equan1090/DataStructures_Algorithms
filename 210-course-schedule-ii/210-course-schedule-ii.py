@@ -1,12 +1,13 @@
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
         graph = {i:[] for i in range(numCourses)}
+        
         for a, b in prerequisites:
             graph[a].append(b)
         
-        res = []
         visited = set()
         visiting = set()
+        res = []
         for node in graph:
             if self.hasCycle(graph, node, visited, visiting, res):
                 return []
@@ -15,6 +16,7 @@ class Solution:
     def hasCycle(self, graph, node, visited, visiting, res):
         if node in visited:
             return False
+        
         if node in visiting:
             return True
         
@@ -25,6 +27,7 @@ class Solution:
                 return True
         
         visiting.remove(node)
+        
         visited.add(node)
         res.append(node)
         return False
