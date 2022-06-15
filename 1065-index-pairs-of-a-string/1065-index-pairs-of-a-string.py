@@ -1,27 +1,38 @@
 class TrieNode:
     def __init__(self):
-        self.children, self.is_word = {}, False
+        self.children = {}
+        self.eow = False
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+        
+    def insert(self, word):
+        cur = self.root
+        for char in word:
+            if char not in cur.children:
+                cur.children[char] = TrieNode()
+            cur = cur.children[char]
+        cur.eow = True
+        
 
-    @staticmethod
-    def construct_trie(words):
-        root = TrieNode()
-        for word in words:
-            node = root
-            for c in word:
-                node.children.setdefault(c, TrieNode())
-                node = node.children[c]
-            node.is_word = True
-        return root
-
+    
 class Solution:
-    def indexPairs(self, text, words):
-        res, trie = [], TrieNode.construct_trie(words)
-        for l in range(len(text)):
-            node = trie
-            for r in range(l, len(text)):
-                if text[r] not in node.children:
+    def indexPairs(self, text: str, words: List[str]) -> List[List[int]]:
+        trie = Trie()
+        for word in words:
+            trie.insert(word)
+        
+        res = []
+        
+        for i in range(len(text)):
+            node = trie.root
+            
+            for j in range(i, len(text)):
+                cur = text[j]
+                if cur in node.children:
+                    node = node.children[cur]
+                else:
                     break
-                node = node.children[text[r]]
-                if node.is_word:
-                    res.append((l, r))
+                if node.eow:
+                    res.append([i, j])
         return res
