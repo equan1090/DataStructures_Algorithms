@@ -28,9 +28,9 @@ class Solution:
             node = trie.root
             
             for j in range(i, len(text)):
-                cur = text[j]
-                if cur in node.children:
-                    node = node.children[cur]
+                char = text[j]
+                if char in node.children:
+                    node = node.children[char]
                 else:
                     break
                 if node.eow:
