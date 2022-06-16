@@ -18,11 +18,12 @@ class Solution:
                 
                 if rowbounds and colbounds and pos not in visited:
                     visited.add(pos)
+                    
                     if grid[nRow][nCol] == 1 and demo > 0:
                         q.append((nRow, nCol, distance + 1, demo - 1))
                         
                     if grid[nRow][nCol] == 0:
                         q.append((nRow, nCol, distance + 1, demo))
-                
-            
         return -1
+                
+        
