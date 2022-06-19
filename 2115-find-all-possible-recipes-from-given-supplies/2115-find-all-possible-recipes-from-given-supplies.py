@@ -1,23 +1,26 @@
 class Solution:
-	def findAllRecipes(self, recipes: List[str], ingredients: List[List[str]], supplies: List[str]) -> List[str]:
-
-		graph = defaultdict(list)
-		in_degree = defaultdict(int)
-		for r,ing in zip(recipes,ingredients):
-			for i in ing:
-				graph[i].append(r)
-				in_degree[r]+=1
-
-		queue = deque(supplies)
-		res = []
-		while queue:
-			ing = queue.popleft()
-			if ing in recipes:
-				res.append(ing)
-
-			for child in graph[ing]:
-				in_degree[child]-=1
-				if in_degree[child]==0:
-					queue.append(child)
-
-		return res
+    def findAllRecipes(self, recipes: List[str], ingredients: List[List[str]], supplies: List[str]) -> List[str]:
+        
+        graph = defaultdict(list)
+        num_parents = defaultdict(int)
+        
+        for r, ing in zip(recipes, ingredients):
+            
+            for i in ing:
+                num_parents[r] += 1
+                graph[i].append(r)
+        
+        q = deque(supplies)
+        res = []
+        
+        while q:
+            node = q.popleft()
+            if node in recipes:
+                res.append(node)
+        
+            for child in graph[node]:
+                num_parents[child] -= 1
+                if num_parents[child] == 0:
+                    q.append(child)
+        return res
+            
