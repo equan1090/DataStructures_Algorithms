@@ -8,10 +8,10 @@ class Solution:
 				graph[i].append(r)
 				in_degree[r]+=1
 
-		queue = supplies[::]
+		queue = deque(supplies)
 		res = []
 		while queue:
-			ing = queue.pop(0)
+			ing = queue.popleft()
 			if ing in recipes:
 				res.append(ing)
 
