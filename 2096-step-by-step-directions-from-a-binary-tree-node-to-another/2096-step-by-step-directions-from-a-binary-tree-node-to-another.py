@@ -6,11 +6,12 @@
 #         self.right = right
 class Solution:
     def getDirections(self, root: Optional[TreeNode], startValue: int, destValue: int) -> str:
-        q = deque([root])
         graph = defaultdict(list)
+        q = deque([root])
         
         while q:
             node = q.popleft()
+            
             if node.left:
                 graph[node.val].append((node.left.val, 'L'))
                 graph[node.left.val].append((node.val, 'U'))
@@ -23,15 +24,16 @@ class Solution:
         
         q = deque([(startValue, '')])
         visited = set()
-        visited.add(startValue)
         
         while q:
-            node, path = q.popleft()
+            node, curPath = q.popleft()
             
             if node == destValue:
-                return path
+                return curPath
             
-            for child, direction in graph[node]:
-                if child not in visited:
-                    visited.add(child)
-                    q.append((child, path + direction))
+            
+            for neighbor, direction in graph[node]:
+                if neighbor not in visited:
+                    visited.add(neighbor)
+                    q.append((neighbor, curPath + direction))
+        return -1
