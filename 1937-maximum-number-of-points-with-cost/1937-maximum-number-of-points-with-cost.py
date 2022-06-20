@@ -1,26 +1,24 @@
 class Solution:
-    def maxPoints(self, points: List[List[int]]) -> int:
-        m, n = len(points), len(points[0])
-        
-        dp = points[0]
-        
-        left = [0] * n ## left side contribution
-        right = [0] * n ## right side contribution
-        
-        for r in range(1, m):
-            for c in range(n):
-                if c == 0:
-                    left[c] = dp[c]
-                else:
-                    left[c] = max(left[c - 1] - 1, dp[c])
-            
-            for c in range(n - 1, -1, -1):
-                if c == n-1:
-                    right[c] = dp[c]
-                else:
-                    right[c] = max(right[c + 1] - 1, dp[c])
-                    
-            for c in range(n):
-                dp[c] = points[r][c] + max(left[c], right[c])
-                
-        return max(dp)
+    def maxPoints(self, P: List[List[int]]) -> int:
+            m, n = len(P), len(P[0])
+            if m == 1: return max(P[0])
+            if n == 1: return sum(sum(x) for x in P)
+
+            def left(arr):
+                lft = [arr[0]] + [0] * (n - 1)
+                for i in range(1, n): lft[i] = max(lft[i - 1] - 1, arr[i])
+                return lft
+
+            def right(arr):
+                rgt = [0] * (n - 1) + [arr[-1]]
+                for i in range(n - 2, -1, -1): rgt[i] = max(rgt[i + 1] - 1, arr[i])
+                return rgt
+
+            pre = P[0]
+            for i in range(m - 1):
+                lft, rgt, cur = left(pre), right(pre), [0] * n
+                for j in range(n):
+                    cur[j] = P[i + 1][j] + max(lft[j], rgt[j])
+                pre = cur[:]
+
+            return max(pre)
