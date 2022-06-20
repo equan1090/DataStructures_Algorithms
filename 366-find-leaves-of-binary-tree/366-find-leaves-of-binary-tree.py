@@ -14,10 +14,11 @@ class Solution:
         if root is None:
             return 0
         
-        levels = max(self.dfs(root.left, res), self.dfs(root.right, res))
+        level = max(self.dfs(root.left, res), self.dfs(root.right, res))
         
-        if len(res) == levels:
+        if len(res) == level:
             res.append([])
-        res[levels].append(root.val)
+        res[level].append(root.val)
         
-        return levels + 1
+        return level + 1
+    
