@@ -2,54 +2,46 @@ class Solution:
     def findAllRecipes(self, recipes: List[str], ingredients: List[List[str]], supplies: List[str]) -> List[str]:
         '''
                 yeast  flour
-                    \  /
-              meat  bread
-                 \  /
-               sandwich
-        '''
-        
-        '''
-        graph {
-            yeast: [bread],
-            flour: [bread],
+                   \   /
+         meat      bread
+            \      /
+              sandwich
+                  
+                  
+        graph = {
+            yeast: [bread]
+            flour: [bread]
             meat: [sandwich]
             bread: [sandwich]
-            sandwich: []
         }
-        num_parents = {
-            bread: 2
-            sandwich: 2
+        numParents = {
+            bread = 2
+            sandwich = 2
         }
-        Input: recipes = ["bread",          "sandwich"], 
-        
+        recipes =        ["bread",         "sandwich"], 
         ingredients = [["yeast","flour"],["bread","meat"]], 
         supplies = ["yeast","flour","meat"]
-        
+    
         '''
         graph = defaultdict(list)
-        num_parents = defaultdict(int)
+        numParents = defaultdict(int)
         
-        for r, ing in zip(recipes, ingredients):
+        for rec, ing in zip(recipes, ingredients):
             for i in ing:
-                graph[i].append(r)
-                num_parents[r] += 1
-        
+                numParents[rec] += 1
+                graph[i].append(rec)
         
         q = deque(supplies)
         res = []
-        # q = [yeast, flour, meat]
         while q:
             node = q.popleft()
-            
             if node in recipes:
                 res.append(node)
             
             for child in graph[node]:
-                num_parents[child] -= 1
-                if num_parents[child] == 0:
+                numParents[child] -= 1
+                if numParents[child] == 0:
                     q.append(child)
         return res
             
             
-        
-        
