@@ -2,38 +2,37 @@ class StockPrice:
 
     def __init__(self):
         self.timestamps = {}
-        self.newest = 0
-        self.minheap = []
-        self.maxheap = []
+        self.latest = 0
+        self.minHeap = []
+        self.maxHeap = []
         
 
     def update(self, timestamp: int, price: int) -> None:
         self.timestamps[timestamp] = price
-        self.newest = max(self.newest, timestamp)
-        heapq.heappush(self.minheap, (price, timestamp))
-        heapq.heappush(self.maxheap, (-price, timestamp))
+        self.latest = max(timestamp, self.latest)
+        heapq.heappush(self.minHeap, (price, timestamp))
+        heapq.heappush(self.maxHeap, (-price, timestamp))
         
 
     def current(self) -> int:
-        return self.timestamps[self.newest]
-        
+        return self.timestamps[self.latest]
 
     def maximum(self) -> int:
-        curPrice, timestamp = heapq.heappop(self.maxheap)
-        
+        curPrice, timestamp = heapq.heappop(self.maxHeap)
         while -curPrice != self.timestamps[timestamp]:
-            curPrice, timestamp = heapq.heappop(self.maxheap)
+            curPrice, timestamp = heapq.heappop(self.maxHeap)
         
-        heapq.heappush(self.maxheap, (curPrice, timestamp))
+        heapq.heappush(self.maxHeap, (curPrice, timestamp))
         return -curPrice
+        
 
     def minimum(self) -> int:
-        curPrice, timestamp = heapq.heappop(self.minheap)
         
+        curPrice, timestamp = heapq.heappop(self.minHeap)
         while curPrice != self.timestamps[timestamp]:
-            curPrice, timestamp = heapq.heappop(self.minheap)
-            
-        heapq.heappush(self.minheap, (curPrice, timestamp))
+            curPrice, timestamp = heapq.heappop(self.minHeap)
+        
+        heapq.heappush(self.minHeap, (curPrice, timestamp))
         return curPrice
 
 
