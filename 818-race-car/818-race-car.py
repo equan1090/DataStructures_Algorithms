@@ -3,16 +3,18 @@ class Solution:
         q = deque([(0, 0, 1)])
         visited = set()
         while q:
-            pos, move, speed = q.popleft()
+            moves, position, speed = q.popleft()
             
-            if pos == target:
-                return move
+            if position == target:
+                return moves
             
-            if (pos, speed) not in visited:
+            if (position, speed) not in visited:
                 visited.add((pos, speed))
-            q.append((pos + speed, move + 1, speed*2))
             
-            if (pos + speed > target and speed) > 0 or (pos + speed < target and speed < 0):
+            q.append((moves + 1, position + speed, speed * 2))
+            
+            if (position + speed > target and speed > 0) or (position + speed < target and speed < 0):
                 speed = 1 if speed < 0 else -1
-                q.append((pos, move + 1, speed))
+                
+                q.append((moves + 1, position, speed))
         return -1
