@@ -60,7 +60,7 @@ class Solution:
                     backtrack(nx, ny, nDirection)
                     go_back()
                 
-                robot.turnLeft()
+                robot.turnRight()
         backtrack(0, 0, 0)
                 
             
