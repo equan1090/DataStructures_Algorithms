@@ -32,36 +32,25 @@
 
 class Solution:
     def cleanRoom(self, robot):
-        """
-        :type robot: Robot
-        :rtype: None
-        """
-        directions = [[-1, 0], [0, 1], [1, 0], [0, -1]]
-        visited = set()
-        
-        def go_back():
-            robot.turnRight()
-            robot.turnRight()
-            robot.move()
-            robot.turnRight()
-            robot.turnRight()
-        
-        def backtrack(x, y, direction):
-            visited.add((x, y))
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+        cleaned = set()
+        def dfs(robot, x, y, direction):
+            if (x, y) in cleaned:
+                return
             robot.clean()
-            
-            for i in range(4):
-                new_direction = (direction + i) % 4
-                
-                new_x = x + directions[new_direction][0]
-                new_y = y + directions[new_direction][1]
-                
-                if (new_x, new_y) not in visited and robot.move():
-                    backtrack(new_x, new_y, new_direction)
-                    go_back()
-        
-                robot.turnRight()
-        backtrack(0, 0, 0)
+            cleaned.add((x, y))
+            for i, (dx, dy) in enumerate(directions[direction:] + directions[:direction]):
+                nx = x + dx
+                ny = y + dy
+                if robot.move():
+                    dfs(robot, nx, ny, (direction + i) % 4)
+                    robot.turnLeft()
+                    robot.turnLeft()
+                    robot.move()
+                    robot.turnLeft()
+                else:    
+                    robot.turnRight()
+        dfs(robot, 0, 0, 0) 
             
         
                 
