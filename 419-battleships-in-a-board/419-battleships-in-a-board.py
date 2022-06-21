@@ -1,27 +1,11 @@
 class Solution:
     def countBattleships(self, board: List[List[str]]) -> int:
-        visited = set()
-        count = 0
-        for r in range(len(board)):
-            for c in range(len(board[0])):
-                if self.dfs(board, r, c, visited):
-                    count += 1
-        return count
-    
-    def dfs(self, board, r, c, visited):
-        pos = (r, c)
+        ans = 0
         
-        rowbounds = 0 <= r < len(board)
-        colbounds = 0 <= c < len(board[0])
+        for i in range(len(board)):
+            for j in range(len(board[i])):
+                # if self.isbs(board, i, j):
+                if board[i][j] == 'X' and not (i > 0 and board[i - 1][j] == 'X') and not (j > 0 and board[i][j - 1] == 'X'):
+                    ans += 1
         
-        if not rowbounds or not colbounds or board[r][c] == '.' or pos in visited:
-            return False
-        
-        visited.add(pos)
-        
-        self.dfs(board, r + 1, c, visited)
-        self.dfs(board, r - 1, c, visited)
-        self.dfs(board, r, c + 1, visited)
-        self.dfs(board, r, c - 1, visited)
-        
-        return True
+        return ans
