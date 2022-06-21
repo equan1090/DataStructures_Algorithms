@@ -10,9 +10,9 @@ class Solution:
             for j in range(len(word)):
                 
                 # creating words by deleting a letter
-                successor = word[:j] + word[j+1:]
-                if successor in dic:
-                    dic[ word ] = max (dic[word], 1 + dic[successor])
+                pre = word[:j] + word[j+1:]
+                if pre in dic:
+                    dic[ word ] = max (dic[word], 1 + dic[pre])
         
         res = max(dic.values())
         return res
