@@ -36,8 +36,8 @@ class Solution:
         :type robot: Robot
         :rtype: None
         """
-        directions = [[-1, 0], [0, 1], [1, 0], [0, -1]]
         visited = set()
+        directions = [[-1, 0], [0, 1], [1, 0], [0, -1]]
         
         def go_back():
             robot.turnRight()
@@ -46,23 +46,24 @@ class Solution:
             robot.turnRight()
             robot.turnRight()
         
+        
         def backtrack(x, y, direction):
             visited.add((x, y))
             robot.clean()
             
             for i in range(4):
-                new_direction = (direction + i) % 4
+                nDirection = (direction + i) % 4
+                nx = x + directions[nDirection][0]
+                ny = y + directions[nDirection][1]
                 
-                new_x = x + directions[new_direction][0]
-                new_y = y + directions[new_direction][1]
-                
-                if (new_x, new_y) not in visited and robot.move():
-                    backtrack(new_x, new_y, new_direction)
+                if (nx, ny) not in visited and robot.move():
+                    backtrack(nx, ny, nDirection)
                     go_back()
-        
+                
                 robot.turnRight()
         backtrack(0, 0, 0)
-            
+                
             
         
-                
+        
+        
