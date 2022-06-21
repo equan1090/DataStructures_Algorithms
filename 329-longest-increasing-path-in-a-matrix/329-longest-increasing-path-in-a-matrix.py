@@ -1,11 +1,12 @@
 class Solution:
     def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
         memo = {}
-        
+        longest = 0
         for r in range(len(matrix)):
             for c in range(len(matrix[0])):
-                self.dfs(matrix, r, c, float('-inf'), memo)
-        return max(memo.values())
+                attempt = self.dfs(matrix, r, c, float('-inf'), memo)
+                longest = max(longest, attempt)
+        return longest
         
         
     def dfs(self, matrix, r, c, prev, memo):
