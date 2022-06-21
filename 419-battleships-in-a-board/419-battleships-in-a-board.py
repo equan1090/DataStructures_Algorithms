@@ -5,13 +5,13 @@ class Solution:
         
         output =0
         
-        for i in range(len(board)):
-            for j in range(len(board[0])):
-                if board[i][j]=='.':
+        for r in range(len(board)):
+            for c in range(len(board[0])):
+                if board[r][c]=='.':
                     continue
-                if i > 0 and board[i-1][j] == 'X':
+                if r > 0 and board[r-1][c] == 'X':
                     continue
-                if j > 0 and board[i][j-1] == 'X':
+                if c > 0 and board[r][c-1] == 'X':
                     continue
                 output +=1
         return output
