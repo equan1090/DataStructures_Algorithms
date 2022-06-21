@@ -37,8 +37,9 @@ class Solution:
         def dfs(robot, x, y, direction):
             if (x, y) in cleaned:
                 return
-            robot.clean()
             cleaned.add((x, y))
+            robot.clean()
+            
             for i, (dx, dy) in enumerate(directions[direction:] + directions[:direction]):
                 nx = x + dx
                 ny = y + dy
