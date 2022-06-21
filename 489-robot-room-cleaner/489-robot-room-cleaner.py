@@ -44,7 +44,8 @@ class Solution:
                 nx = x + dx
                 ny = y + dy
                 if robot.move():
-                    dfs(robot, nx, ny, (direction + i) % 4)
+                    new_direction = (direction + i) % 4
+                    dfs(robot, nx, ny, new_direction)
                     robot.turnLeft()
                     robot.turnLeft()
                     robot.move()
