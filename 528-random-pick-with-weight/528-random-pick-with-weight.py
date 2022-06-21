@@ -1,23 +1,29 @@
+# Time complexity = O(n) for constructor and O(logn) for pickIndex
+# Space complexity = O(n) for constructor and O(1) for pickIndex
+
 class Solution:
 
     def __init__(self, w: List[int]):
-        self.w = w
-		# 1. calculate relative frequency
-        denom = sum(self.w)
-        for i in range(len(self.w)):
-            self.w[i] = self.w[i] / denom
-        # 2. put relative frequencies on the number line between 0 and 1
-		# Note self.w[-1] = 1
-        for i in range(1,len(self.w)):
-            self.w[i] += self.w[i-1]
+        self.prefix_sums = []
+        self.total_sum = 0
+        
+        for weight in w:
+            self.total_sum += weight
+            self.prefix_sums.append(self.total_sum)
 
     def pickIndex(self) -> int:
-        N = random.uniform(0, 1)
-
-        for index, weight in enumerate(self.w):
-            if N <= weight:
-                return index
-
+        random_target = self.total_sum * random.random()
+        
+        left, right = 0, len(self.prefix_sums)
+        
+        while left < right:
+            middle = left + (right - left) // 2
+            if self.prefix_sums[middle] >= random_target:
+                right = middle
+            else:
+                left = middle + 1
+        
+        return left
 # Your Solution object will be instantiated and called as such:
 # obj = Solution(w)
 # param_1 = obj.pickIndex()
