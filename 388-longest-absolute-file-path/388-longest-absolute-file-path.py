@@ -2,6 +2,7 @@ class Solution:
     def lengthLongestPath(self, input: str) -> int:
         paths = {}
         res = 0
+        
         chunks = input.split('\n')
         
         for c in chunks:
@@ -10,11 +11,10 @@ class Solution:
             while c[level] == '\t':
                 level += 1
             
-            length = len(c) if level == 0 else paths[level - 1] + 1 + len(c[level:])
+            curLength = len(c) if level == 0 else paths[level - 1] + 1 + len(c[level:])
             
             if '.' in c:
-                res = max(res, length)
+                res = max(res, curLength)
             else:
-                paths[level] = length
+                paths[level] = curLength
         return res
-        
