@@ -15,7 +15,7 @@ class Solution:
         if not rowbounds or not colbounds or matrix[r][c] <= prev:
             return 0
         
-        key = (r, c)
+        key = (r, c, prev)
         if key in memo:
             return memo[key]
         
