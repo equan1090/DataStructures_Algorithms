@@ -11,15 +11,17 @@ class Solution:
         
         
     def dfs(self, matrix, r, c, prev, memo):
-        key = (r, c, prev)
-        if key in memo:
-            return memo[key]
+
         
         rowbounds = 0 <= r < len(matrix)
         colbounds = 0 <= c < len(matrix[0])
         
         if not rowbounds or not colbounds or matrix[r][c] <= prev:
             return 0
+        
+        key = (r, c, prev)
+        if key in memo:
+            return memo[key]
         
         res = 1
         res = max(res, 1 + self.dfs(matrix, r + 1, c, matrix[r][c], memo))
