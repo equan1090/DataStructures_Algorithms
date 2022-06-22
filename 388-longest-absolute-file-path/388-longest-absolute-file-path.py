@@ -7,7 +7,7 @@ class Solution:
         for c in chunks:
             level = 0
             
-            while level < len(c) and c[level] == '\t':
+            while c[level] == '\t':
                 level += 1
             
             length = len(c) if level == 0 else paths[level - 1] + 1 + len(c[level:])
