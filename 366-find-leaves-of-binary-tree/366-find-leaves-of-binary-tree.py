@@ -20,5 +20,4 @@ class Solution:
             res.append([])
         res[level].append(root.val)
         
-        return level + 1
-    
+        return 1 + level
