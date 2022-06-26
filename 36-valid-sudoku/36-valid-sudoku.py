@@ -1,8 +1,8 @@
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
-        rows = defaultdict(set)
-        cols = defaultdict(set)
-        square = defaultdict(set)
+        rows = defaultdict(list)
+        cols = defaultdict(list)
+        squares = defaultdict(list)
         
         for r in range(len(board)):
             for c in range(len(board[0])):
@@ -10,10 +10,10 @@ class Solution:
                 if pos == '.':
                     continue
                 
-                if pos in rows[r] or pos in cols[c] or pos in square[(r//3, c//3)]:
+                if pos in rows[r] or pos in cols[c] or pos in squares[(r // 3, c // 3)]:
                     return False
                 
-                rows[r].add(pos)
-                cols[c].add(pos)
-                square[(r//3, c//3)].add(pos)
+                rows[r].append(pos)
+                cols[c].append(pos)
+                squares[(r//3,c//3)].append(pos)
         return True
