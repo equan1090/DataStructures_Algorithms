@@ -9,5 +9,5 @@ class Solution:
             current = 0
             while current + num in setNums:
                 current += 1
-            res = max(res, current)
+            res = max(current, res)
         return res
