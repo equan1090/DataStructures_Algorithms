@@ -13,7 +13,7 @@ class Solution:
         while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
-        
+            
         cur = slow.next
         slow.next = None
         prev = None
@@ -23,21 +23,16 @@ class Solution:
             prev = cur
             cur = nxt
         
+        left = head
+        right = prev
         
-        left, right = head, prev
-        
-        # 1 2
-        # 3 4
-        
-        
-        # 1 2 3
-        # 4 5
         while left and right:
-            tmpL = left.next
-            tmpR = right.next
+            # 1 -> 2 -> 3
+            # 5 -> 4
+            tmpLeft = left.next
+            tmpRight = right.next
             left.next = right
-            left = tmpL
+            left = tmpLeft
             right.next = left
-            right = tmpR
-            
-            
+            right = tmpRight
+        return head
