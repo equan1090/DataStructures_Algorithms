@@ -5,7 +5,7 @@
 #         self.next = next
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-        if not lists or len(lists) == 0:
+        if not lists:
             return None
         
         if len(lists) == 1:
@@ -20,6 +20,7 @@ class Solution:
     def merge(self, left, right):
         dummy = ListNode(None)
         tail = dummy
+        
         while left and right:
             if left.val < right.val:
                 tail.next = left
@@ -27,6 +28,7 @@ class Solution:
             else:
                 tail.next = right
                 right = right.next
+            
             tail = tail.next
         
         tail.next = left or right
