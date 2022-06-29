@@ -9,5 +9,5 @@ class Solution:
                 l += 1
             
             seen.add(s[r])
-            res = max(res, len(seen))
+            res = max(res, r-l+1)
         return res
