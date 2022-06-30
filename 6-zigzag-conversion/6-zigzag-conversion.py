@@ -2,19 +2,18 @@ class Solution:
     def convert(self, s: str, numRows: int) -> str:
         if numRows == 1:
             return s
-        res = ['' for _ in range(numRows)]
         
-        idx = 0
+        res = [''] * numRows
+        i = 0
         step = 1
         
         for c in s:
-            res[idx] += c
+            res[i] += c
             
-            if idx == 0:
+            if i == 0:
                 step = 1
-            elif idx == numRows - 1:
+            elif i == numRows - 1:
                 step = -1
-                
-            idx += step
-        
+            
+            i += step
         return ''.join(res)
