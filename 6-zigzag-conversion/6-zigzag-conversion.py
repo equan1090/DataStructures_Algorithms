@@ -2,7 +2,7 @@ class Solution:
     def convert(self, s: str, numRows: int) -> str:
         if numRows == 1:
             return s
-        res = [''] * numRows
+        res = ['' for _ in range(numRows)]
         
         idx = 0
         step = 1
