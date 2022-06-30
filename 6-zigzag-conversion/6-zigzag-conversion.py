@@ -1,6 +1,6 @@
 class Solution(object):
     def convert(self, s, numRows):
-        if numRows == 1 or numRows >= len(s):
+        if numRows == 1:
             return s
         # This is a vague sentence for python beginers
         L = [''] * numRows
