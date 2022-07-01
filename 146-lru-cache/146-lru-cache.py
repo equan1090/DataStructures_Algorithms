@@ -1,53 +1,53 @@
-class Node:
+class DoubleLL:
     def __init__(self, key, val):
         self.key = key
         self.val = val
         self.next = None
         self.prev = None
-    
+        
+
 class LRUCache:
 
     def __init__(self, capacity: int):
-        self.cap = capacity
+        self.capacity = capacity
         self.cache = {}
+        self.left = DoubleLL(-1, -1)
+        self.right = DoubleLL(-1, -1)
+        self.left.next, self.right.prev = self.right, self.left
         
-        self.left = Node(-1, -1)
-        self.right = Node(-1, -1)
-        self.left.next = self.right
-        self.right.prev = self.left
-        
-
-    def insert(self, node):
-        prev = self.right.prev
-        self.right.prev = node
-        prev.next = node
-        node.next = self.right
-        node.prev = prev
-        
-    
     def remove(self, node):
         prev = node.prev
         nxt = node.next
         prev.next, nxt.prev = nxt, prev
-    
+        
+    def insert(self, node):
+        prev = self.right.prev
+        prev.next = node
+        node.prev = prev
+        node.next = self.right
+        self.right.prev = node
+        
+        
     def get(self, key: int) -> int:
         if key in self.cache:
             self.remove(self.cache[key])
             self.insert(self.cache[key])
             return self.cache[key].val
         return -1
-    
+        
     def put(self, key: int, value: int) -> None:
         if key in self.cache:
             self.remove(self.cache[key])
         
-        self.cache[key] = Node(key, value)
+        self.cache[key] = DoubleLL(key, value)
         self.insert(self.cache[key])
         
-        if len(self.cache) > self.cap:
+        if len(self.cache) > self.capacity:
             lru = self.left.next
-            self.remove(lru)
-            del self.cache[lru.key]    
+            self.remove(self.cache[lru.key])
+            del self.cache[lru.key]
+        
+        
         
 
 
