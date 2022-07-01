@@ -2,9 +2,9 @@ class Solution:
     def isValid(self, s: str) -> bool:
         stack = []
         pairs = {
+            ')': '(',
             '}': '{',
-            ']': '[',
-            ')': '('
+            ']': '['
         }
         
         for c in s:
