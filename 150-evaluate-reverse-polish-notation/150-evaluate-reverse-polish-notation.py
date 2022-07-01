@@ -6,15 +6,13 @@ class Solution:
             if c not in '/*-+':
                 stack.append(int(c))
             else:
-                second = stack.pop()
-                first = stack.pop()
+                right, left = stack.pop(), stack.pop()
                 if c == '+':
-                    stack.append(first + second)
+                    stack.append(left + right)
                 elif c == '-':
-                    stack.append(first - second)
+                    stack.append(left - right)
                 elif c == '*':
-                    stack.append(first * second)
+                    stack.append(left * right)
                 else:
-                    stack.append(int(first / second))
+                    stack.append(int(left / right))
         return stack.pop()
-                
