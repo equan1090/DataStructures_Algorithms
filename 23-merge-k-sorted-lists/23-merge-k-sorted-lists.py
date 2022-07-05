@@ -32,4 +32,5 @@ class Solution:
             tail = tail.next
         
         tail.next = left or right
+        
         return dummy.next
