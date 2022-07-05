@@ -8,10 +8,10 @@ class Solution:
         while l < r:
             if leftMax < rightMax:
                 l += 1
-                leftMax = max(leftMax, height[l])
+                leftMax = max(height[l], leftMax)
                 res += leftMax - height[l]
             else:
                 r -= 1
-                rightMax = max(rightMax, height[r])
+                rightMax = max(height[r], rightMax)
                 res += rightMax - height[r]
         return res
