@@ -17,5 +17,10 @@ class Solution:
         return res
         
         
+        '''
+        start = [0, 5, 10]
+        end =   [10, 15, 30]
+        '''
+        
         
         
