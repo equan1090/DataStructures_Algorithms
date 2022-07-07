@@ -5,15 +5,17 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def diameterOfBinaryTree(self, root):
-
-       
-        def recurse(node):
-            if not node: return 0
-            left, right = recurse(node.left), recurse(node.right)
-            self.result = max(self.result, left+right)
-            return 1 + max(left, right)
-
-        self.result = 0
-        recurse(root)
-        return self.result
+    def path_length(self, root: TreeNode):
+        if root:
+            left_path = self.path_length(root.left)
+            right_path = self.path_length(root.right)
+            path = left_path + right_path
+            if path > self.diameter:
+                self.diameter = path    
+            return max(left_path, right_path)+1
+        return 0
+        
+    def diameterOfBinaryTree(self, root: TreeNode) -> int:
+        self.diameter = 0
+        self.path_length(root)
+        return self.diameter
