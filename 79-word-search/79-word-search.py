@@ -32,4 +32,3 @@ class Solution:
         )
         visited.remove(pos)
         return res
-        
