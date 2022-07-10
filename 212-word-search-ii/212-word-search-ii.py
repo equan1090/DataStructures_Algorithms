@@ -12,8 +12,7 @@ class Solution(object):
             current_node = trie_root
             for char in word:
                 if not char in current_node.children:
-                    new_node = TrieNode(char)
-                    current_node.children[char] = new_node
+                    current_node.children[char] = TrieNode(char)
                 current_node = current_node.children[char]
             current_node.is_end = word
         
