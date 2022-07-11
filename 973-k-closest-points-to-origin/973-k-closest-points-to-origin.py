@@ -6,10 +6,11 @@ class Solution:
         heap = []
         
         for (x, y) in points:
+            
             dist = -(x*x + y*y)
-            if len(heap) == K:
-                heapq.heappushpop(heap, (dist, x, y))
-            else:
-                heapq.heappush(heap, (dist, x, y))
+            heapq.heappush(heap, (dist, x, y))
+            if len(heap) > K:
+                heapq.heappop(heap)
+                
         
         return [(x,y) for (dist,x, y) in heap]
