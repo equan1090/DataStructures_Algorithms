@@ -12,5 +12,4 @@ class Solution:
             if len(heap) > K:
                 heapq.heappop(heap)
                 
-        
         return [(x,y) for (dist,x, y) in heap]
