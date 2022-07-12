@@ -7,10 +7,8 @@
 
 class Solution:
     def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
-        if not k:
-            return [target.val]
-        
         graph = defaultdict(list)
+        
         q = deque([root])
         while q:
             node = q.popleft()
@@ -27,29 +25,15 @@ class Solution:
         q = deque([(target, 0)])
         res = []
         visited = set([target])
-        
         while q:
             node, distance = q.popleft()
+            
             if distance == k:
                 res.append(node.val)
             
-            for neighbor in graph[node]:
-                if neighbor not in visited:
-                    visited.add(neighbor)
-                    q.append((neighbor, distance + 1))
-        return res
-            
-            
-        '''
-        graph = {
-        0: []
-        1: [0, 8],
-        2: [7, 4]
-        3: [5, 1]
-        4: []
-        6: []
-        7: []
-        8: []
-        }
-        '''
-            
+            for nei in graph[node]:
+                if nei not in visited:
+                    visited.add(nei)
+                    q.append((nei, distance + 1))
+        return res        
+        
