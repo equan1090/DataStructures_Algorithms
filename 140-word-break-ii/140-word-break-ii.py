@@ -8,8 +8,10 @@ class Solution(object):
         return self.helper(s, wordDict, {})
 
     def helper(self, s, wordDict, memo):
-        if s in memo: return memo[s]
-        if not s: return []
+        if s in memo: 
+            return memo[s]
+        if not s: 
+            return []
 
         res = []
         for word in wordDict:
