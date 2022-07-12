@@ -9,5 +9,4 @@ class Solution:
                 flips += 1
                 potential -= 1
         
-        
         return flips
