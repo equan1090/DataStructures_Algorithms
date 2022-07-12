@@ -5,7 +5,7 @@ class Solution:
         for c in s:
             if c == '1':
                 potential += 1
-            elif potential > 0:
+            if c == '0' and potential > 0:
                 flips += 1
                 potential -= 1
         
