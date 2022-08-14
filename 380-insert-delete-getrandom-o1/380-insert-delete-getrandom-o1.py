@@ -1,37 +1,39 @@
-from random import randint
-
 class RandomizedSet:
 
+    '''
+    {1: 0, 2: 1, 3: 2}
+    [1, 2, 3]
+    '''
+    
     def __init__(self):
-        self.set = []     
-        self.positions = {}
+        self.cache = {}
+        self.arr = []
+        
 
     def insert(self, val: int) -> bool:
-        if val in self.positions:
-            return False
-        else:
-            self.positions[val] = len(self.set)
-            self.set.append(val)
+        if val not in self.cache:
+            self.cache[val] = len(self.arr)
+            self.arr.append(val)
             return True
-
+        return False
 
     def remove(self, val: int) -> bool:
-        if val not in self.positions:
-            return False
-        else:
-            position = self.positions.pop(val)
-            replace = self.set.pop()
-            
-            if replace != val:
-                self.set[position] = replace
-                self.positions[replace] = position
-            return True
 
+        if val in self.cache:
+            idx = self.cache[val]
+            last = self.arr[-1]
+            self.arr[idx] = last
+            self.arr.pop()
+            self.cache[last] = idx
+            del self.cache[val]
+            return True
+        return False
+        
+        
 
     def getRandom(self) -> int:
-        n = len(self.set)-1
-        index = randint(0,n)
-        return self.set[index]
+        rand = randrange(len(self.arr))
+        return self.arr[rand]
 
 # Your RandomizedSet object will be instantiated and called as such:
 # obj = RandomizedSet()
