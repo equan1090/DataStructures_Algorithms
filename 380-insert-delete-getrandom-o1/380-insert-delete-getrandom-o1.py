@@ -32,8 +32,7 @@ class RandomizedSet:
         
 
     def getRandom(self) -> int:
-        rand = randrange(len(self.arr))
-        return self.arr[rand]
+        return random.choice(self.arr)
 
 # Your RandomizedSet object will be instantiated and called as such:
 # obj = RandomizedSet()
