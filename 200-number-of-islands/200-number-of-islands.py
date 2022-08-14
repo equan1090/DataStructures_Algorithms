@@ -4,11 +4,11 @@ class Solution:
         visited = set()
         for r in range(len(grid)):
             for c in range(len(grid[0])):
-                if self.traverse(grid, r, c, visited):
+                if self.foundIsland(grid, r, c, visited):
                     count += 1
         return count
-        
-    def traverse(self, grid, r, c, visited):
+    
+    def foundIsland(self, grid, r, c, visited):
         rowbounds = 0 <= r < len(grid)
         colbounds = 0 <= c < len(grid[0])
         
@@ -17,10 +17,9 @@ class Solution:
         
         visited.add((r, c))
         
-        self.traverse(grid, r + 1, c, visited)
-        self.traverse(grid, r - 1, c, visited)
-        self.traverse(grid, r, c + 1, visited)
-        self.traverse(grid, r, c - 1, visited)
+        self.foundIsland(grid, r + 1, c, visited)
+        self.foundIsland(grid, r - 1, c, visited)
+        self.foundIsland(grid, r, c + 1, visited)
+        self.foundIsland(grid, r, c - 1, visited)
         
         return True
-    
