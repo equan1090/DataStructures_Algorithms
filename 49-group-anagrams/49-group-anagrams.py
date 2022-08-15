@@ -1,15 +1,15 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        groups = {}
+        group = {}
         
         for s in strs:
-            count = [0] * 26    
+            count = [0] * 26
             for c in s:
                 count[ord(c) - ord('a')] += 1
             
             key = tuple(count)
-            if key not in groups:
-                groups[key] = []
-            groups[key].append(s)
-            
-        return groups.values()
+            if key not in group:
+                group[key] = []
+            group[key].append(s)
+        
+        return group.values()
