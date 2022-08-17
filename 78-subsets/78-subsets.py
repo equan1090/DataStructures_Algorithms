@@ -1,10 +1,11 @@
 class Solution:
-    def subsets(self, nums: List[int]) -> List[List[int]]:
+    def subsets(self, nums):
         res = []
-        self.dfs(nums, [], res)
+        self.generateSubsets(nums, res, [], 0)
         return res
-    
-    def dfs(self, nums, path, res):
-        res.append(path)
-        for i in range(len(nums)):
-            self.dfs(nums[i+1:], path + [nums[i]], res)
+    def generateSubsets(self, nums, res, curr, index):
+        res.append(list(curr))
+        for i in range(index, len(nums)):
+            curr.append(nums[i])
+            self.generateSubsets(nums, res, curr, i + 1)
+            curr.pop()
