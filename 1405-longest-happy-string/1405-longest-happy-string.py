@@ -1,13 +1,29 @@
 class Solution:
     def longestDiverseString(self, a: int, b: int, c: int) -> str:
-        s = [[a, 'a'], [b, 'b'], [c, 'c']]
-        ans = []
-        while True:
-            s.sort()
-            i = 1 if len(ans) >= 2 and ans[-2] == ans[-1] == s[2][1] else 2
-            if s[i][0]:
-                ans.append(s[i][1])
-                s[i][0] -= 1
+        maxHeap = []
+        res = ''
+        
+        for count, char in [[-a, 'a'], [-b, 'b'], [-c, 'c']]:
+            if count != 0:
+                heapq.heappush(maxHeap, [count, char])
+        
+        while maxHeap:
+            count, char = heapq.heappop(maxHeap)
+            
+            if len(res) >= 2 and res[-1] == res[-2] == char:
+                if not maxHeap:
+                    break
+                count2, char2 = heapq.heappop(maxHeap)
+                
+                res += char2
+                count2 += 1
+                if count2:
+                    heapq.heappush(maxHeap, [count2, char2])
             else:
-                break
-        return ''.join(ans)
+                res += char
+                count += 1
+            
+            if count:
+                heapq.heappush(maxHeap, [count, char])
+        return res
+            
