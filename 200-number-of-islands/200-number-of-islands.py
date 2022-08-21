@@ -4,22 +4,22 @@ class Solution:
         visited = set()
         for r in range(len(grid)):
             for c in range(len(grid[0])):
-                if self.foundIsland(grid, r, c, visited):
+                if self.dfs(grid, r, c, visited):
                     count += 1
         return count
     
-    def foundIsland(self, grid, r, c, visited):
+    def dfs(self, grid, r, c, visited):
         rowbounds = 0 <= r < len(grid)
         colbounds = 0 <= c < len(grid[0])
         
-        if not rowbounds or not colbounds or grid[r][c] == '0' or (r, c) in visited:
+        if not rowbounds or not colbounds or (r, c) in visited or grid[r][c] == '0':
             return False
         
         visited.add((r, c))
         
-        self.foundIsland(grid, r + 1, c, visited)
-        self.foundIsland(grid, r - 1, c, visited)
-        self.foundIsland(grid, r, c + 1, visited)
-        self.foundIsland(grid, r, c - 1, visited)
+        self.dfs(grid, r + 1, c, visited)
+        self.dfs(grid, r - 1, c, visited)
+        self.dfs(grid, r, c + 1, visited)
+        self.dfs(grid, r, c - 1, visited)
         
         return True
