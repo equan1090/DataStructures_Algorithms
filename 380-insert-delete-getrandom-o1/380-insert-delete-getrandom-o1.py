@@ -1,14 +1,8 @@
 class RandomizedSet:
 
-    '''
-    {1: 0, 2: 1, 3: 2}
-    [1, 2, 3]
-    '''
-    
     def __init__(self):
         self.cache = {}
         self.arr = []
-        
 
     def insert(self, val: int) -> bool:
         if val not in self.cache:
@@ -18,21 +12,19 @@ class RandomizedSet:
         return False
 
     def remove(self, val: int) -> bool:
-
         if val in self.cache:
             idx = self.cache[val]
-            last = self.arr[-1]
+            last = self.arr[-1] 
             self.arr[idx] = last
-            self.arr.pop()
             self.cache[last] = idx
+            self.arr.pop()
             del self.cache[val]
             return True
         return False
-        
-        
 
     def getRandom(self) -> int:
         return random.choice(self.arr)
+
 
 # Your RandomizedSet object will be instantiated and called as such:
 # obj = RandomizedSet()
