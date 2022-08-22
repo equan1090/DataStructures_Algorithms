@@ -10,10 +10,10 @@ class Solution:
                 if pos == '.':
                     continue
                 
-                if pos in rows[r] or pos in cols[c] or pos in squares[(r // 3, c // 3)]:
+                if pos in rows[r] or pos in cols[c] or pos in squares[(r//3, c//3)]:
                     return False
                 
                 rows[r].add(pos)
                 cols[c].add(pos)
-                squares[(r//3,c//3)].add(pos)
+                squares[(r//3, c//3)].add(pos)
         return True
