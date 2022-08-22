@@ -1,9 +1,10 @@
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        return self.compare(s) == self.compare(t)
         
-    def compare(self, s):
-        count = {}
+        return self.counter(s) == self.counter(t)
+        
+    def counter(self, s):
+        freq = {}
         for c in s:
-            count[c] = 1 + count.get(c, 0)
-        return count
+            freq[c] = 1 + freq.get(c, 0)
+        return freq
