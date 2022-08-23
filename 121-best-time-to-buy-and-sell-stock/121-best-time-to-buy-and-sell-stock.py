@@ -6,6 +6,7 @@ class Solution:
         for r in range(len(prices)):
             curPrice = prices[r] - prices[l]
             if curPrice < 0:
+                curPrice = 0
                 l = r
             res = max(res, curPrice)
         return res
