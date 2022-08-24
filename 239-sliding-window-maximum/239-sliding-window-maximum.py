@@ -9,7 +9,7 @@ class Solution:
             
             q.append(r)
             
-            if (r - l + 1) >= k:
+            if (r - l + 1) == k:
                 res.append(nums[q[0]])
                 l += 1
             
