@@ -3,6 +3,7 @@ class Solution:
         q = deque()
         res = []
         l = r = 0
+        
         while r < len(nums):
             while q and nums[q[-1]] < nums[r]:
                 q.pop()
@@ -16,4 +17,3 @@ class Solution:
                 q.popleft()
             r += 1
         return res
-            
