@@ -3,25 +3,31 @@ class Solution:
         top = 0
         bot = len(matrix) - 1
         
+        '''
+        [1, 2, 3]
+        [4, 5, 6]
+        [7. 8. 9]
+        [10 11 12]
+        [13 14 15]
+        '''
         while top <= bot:
             mid = (top + bot) // 2
-            if target < matrix[mid][0]:
+            if matrix[mid][0] > target:
                 bot = mid - 1
-            elif target > matrix[mid][-1]:
+            elif matrix[mid][-1] < target:
                 top = mid + 1
             else:
                 break
         
         row = (top + bot) // 2
-        l = 0
-        r = len(matrix[0]) - 1
-        while l <= r:
-            mid = (l + r) // 2
-            
-            if matrix[row][mid] == target:
-                return True
-            elif matrix[row][mid] < target:
-                l = mid + 1
+        left = 0
+        right = len(matrix[row]) - 1
+        while left <= right:
+            mid = (left + right) // 2
+            if matrix[row][mid] < target:
+                left = mid + 1
+            elif matrix[row][mid] > target:
+                right = mid - 1
             else:
-                r = mid - 1
+                return True
         return False
