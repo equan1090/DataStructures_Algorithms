@@ -10,13 +10,14 @@ class Solution:
         """
         slow = head
         fast = head.next
+        
         while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
-            
+        
+        prev = None
         cur = slow.next
         slow.next = None
-        prev = None
         while cur:
             nxt = cur.next
             cur.next = prev
@@ -25,14 +26,19 @@ class Solution:
         
         left = head
         right = prev
-        
+        '''
+        1 -> 2 -> 3
+        4 -> 5
+        '''
         while left and right:
-            # 1 -> 2 -> 3
-            # 5 -> 4
-            tmpLeft = left.next
-            tmpRight = right.next
+            lNext = left.next
+            rNext = right.next
             left.next = right
-            left = tmpLeft
-            right.next = left
-            right = tmpRight
+            left = lNext
+            right.next = lNext
+            right = rNext
         return head
+            
+        
+        
+        
