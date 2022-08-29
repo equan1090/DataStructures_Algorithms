@@ -8,7 +8,6 @@ class Solution:
         carry = 0
         dummy = ListNode(None)
         tail = dummy
-        
         while l1 or l2 or carry:
             if l1:
                 carry += l1.val
@@ -21,4 +20,4 @@ class Solution:
             tail = tail.next
             carry //= 10
         return dummy.next
-                
+            
