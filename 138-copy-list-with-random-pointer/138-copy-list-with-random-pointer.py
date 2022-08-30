@@ -14,10 +14,10 @@ class Solution:
         while cur:
             oldToNew[cur] = Node(cur.val)
             cur = cur.next
+        
         cur = head
         while cur:
             oldToNew[cur].next = oldToNew[cur.next]
             oldToNew[cur].random = oldToNew[cur.random]
             cur = cur.next
         return oldToNew[head]
-        
