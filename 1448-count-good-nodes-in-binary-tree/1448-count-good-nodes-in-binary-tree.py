@@ -14,8 +14,7 @@ class Solution:
             return 0
         
         res = 1 if node.val >= maxVal else 0
-        maxVal = max(maxVal, node.val)
+        maxVal = max(node.val, maxVal)
         res += self.dfs(node.left, maxVal)
         res += self.dfs(node.right, maxVal)
         return res
-        
