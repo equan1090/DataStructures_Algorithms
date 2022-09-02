@@ -9,16 +9,13 @@ class Solution:
         
         return self.dfs(root, root.val)
         
-        
-    def dfs(self, node, x):
-        if node is None:
+    def dfs(self, node, maxVal):
+        if not node:
             return 0
         
-        res = 1 if node.val >= x else 0
-        
-        x = max(node.val, x)
-        res += self.dfs(node.left, x)
-        res += self.dfs(node.right, x)
+        res = 1 if node.val >= maxVal else 0
+        maxVal = max(maxVal, node.val)
+        res += self.dfs(node.left, maxVal)
+        res += self.dfs(node.right, maxVal)
         return res
-        
         
