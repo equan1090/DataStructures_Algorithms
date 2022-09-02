@@ -22,4 +22,4 @@ class Solution:
         self.inOrder(root.left, res)
         res.append(root.val)
         self.inOrder(root.right, res)
-        return res
+        
