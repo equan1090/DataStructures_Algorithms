@@ -7,8 +7,6 @@
 class Solution:
     def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
         
-        if root is None and subRoot is None:
-            return True
         
         if subRoot is None:
             return True
