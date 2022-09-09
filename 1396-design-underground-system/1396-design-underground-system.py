@@ -1,27 +1,31 @@
 class UndergroundSystem:
 
     def __init__(self):
-        self.tripTimes = {}
-        self.checkedInCustomers = {}
-        
+        self.peopleCheck = {}
+        self.timeCheck = {}
+
     def checkIn(self, id: int, stationName: str, t: int) -> None:
-        self.checkedInCustomers[id] = (stationName, t)
+        if id not in self.peopleCheck:
+            self.peopleCheck[id] = (stationName, t)
 
     def checkOut(self, id: int, stationName: str, t: int) -> None:
-        startStation, startTime = self.checkedInCustomers[id]
-        del self.checkedInCustomers[id]
-        tripTime = t - startTime
+        if id in self.peopleCheck:
+            startStation, startTime = self.peopleCheck[id]
+            del self.peopleCheck[id]
+            time = t - startTime
+            
+            if (startStation, stationName) not in self.timeCheck:
+                self.timeCheck[(startStation, stationName)] = [time, 1]
+            else:
+                self.timeCheck[(startStation, stationName)][0] += time
+                self.timeCheck[(startStation, stationName)][1] += 1
         
-        if (startStation, stationName) not in self.tripTimes:
-            self.tripTimes[(startStation, stationName)] = [tripTime, 1]
-        else:
-            self.tripTimes[(startStation, stationName)][0] += tripTime
-            self.tripTimes[(startStation, stationName)][1] += 1
 
     def getAverageTime(self, startStation: str, endStation: str) -> float:
-        sumOfTimes, numberOfTrips = self.tripTimes[(startStation, endStation)]
         
-        return sumOfTimes / numberOfTrips
+        sumOfTimes, numOfTrips = self.timeCheck[(startStation, endStation)]
+        
+        return sumOfTimes / numOfTrips
 
 
 # Your UndergroundSystem object will be instantiated and called as such:
