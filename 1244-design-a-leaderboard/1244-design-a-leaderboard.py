@@ -1,26 +1,28 @@
 class Leaderboard:
 
     def __init__(self):
-        self.scores = defaultdict(int)
+        self.player = {}
         
-    # O(1)
+
     def addScore(self, playerId: int, score: int) -> None:
-        self.scores[playerId] += score
-        
-    # We're limiting the heap to just K items. So it's O(N log K).
+        if playerId not in self.player:
+            self.player[playerId] = 0
+        self.player[playerId] += score
+
     def top(self, K: int) -> int:
         heap = []
-        for score in self.scores.values():
-            heapq.heappush(heap, score)
+        for val in self.player.values():
+            heapq.heappush(heap, val)
             if len(heap) > K:
                 heapq.heappop(heap)
         
         return sum(heap)
-    
-    # O(1)
+            
+
     def reset(self, playerId: int) -> None:
-        if playerId in self.scores:
-            del self.scores[playerId]    
+        del self.player[playerId]
+
+
 # Your Leaderboard object will be instantiated and called as such:
 # obj = Leaderboard()
 # obj.addScore(playerId,score)
