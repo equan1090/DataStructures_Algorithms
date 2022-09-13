@@ -5,13 +5,14 @@ class Solution:
         for char in s:
             memo[char] += 1
 			
-
+        count = 0
         for char in t:
             if memo[char]:
                 memo[char] -=1   # if char in t is also in memo, substract that from the counted number
-
-        # return count #or
-        return sum(memo.values())
+            else:
+                count += 1
+       
+        return count
     
     '''
     memo = {l: 1
