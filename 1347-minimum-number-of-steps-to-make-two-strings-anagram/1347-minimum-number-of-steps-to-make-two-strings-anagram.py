@@ -1,5 +1,8 @@
 class Solution:
     def minSteps(self, s: str, t: str) -> int:
+        if s == t:
+            return 0
+        
         memo = collections.defaultdict(int)
         # saving the number of occurance of characters in s
         for char in s:
