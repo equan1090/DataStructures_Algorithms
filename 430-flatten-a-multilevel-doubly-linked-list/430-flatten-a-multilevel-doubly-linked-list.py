@@ -32,24 +32,4 @@ class Solution:
         dummy.next.prev = None
         return dummy.next
         
-        '''
-        [3 10]
         
-        1 -> 2 -> 3 -> 4 -> 5 -> 6
-             |
-             7 -> 8 -> 9 -> 10
-                  |
-                  11 -> 12
-                  
-        dummy - 1 - 2 - 7 - 8 - 11 - 12 - 10
-                                      t
-        '''
-        
-
-            
-        #     cur.next = tmp
-        #     tmp.prev = cur
-        #     tmp.child = None
-        #     cur = tmp
-        # dummy.next.prev = None
-        # return dummy.next
