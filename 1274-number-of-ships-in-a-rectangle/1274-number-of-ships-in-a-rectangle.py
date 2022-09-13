@@ -21,7 +21,7 @@ class Solution:
         #terminal condition
         if topRight.x < bottomLeft.x or topRight.y < bottomLeft.y:
             return 0
-        elif topRight.x == bottomLeft.x and topRight.y == bottomLeft.y:
+        if topRight.x == bottomLeft.x and topRight.y == bottomLeft.y:
             if sea.hasShips(topRight, bottomLeft):
                 return 1
             else:
