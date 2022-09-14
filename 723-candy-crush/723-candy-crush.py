@@ -11,7 +11,7 @@ class Solution:
                 num2 = abs(board[r][c+1])
                 num3 = abs(board[r][c+2])
                 
-                if num1 == num2 and num2 == num3 and num1 != 0:
+                if num1 == num2 == num3 and num1 != 0:
                     board[r][c] = -num1
                     board[r][c+1] = -num2
                     board[r][c+2] = -num3
@@ -22,7 +22,7 @@ class Solution:
                 num1 = abs(board[r][c])
                 num2 = abs(board[r+1][c])
                 num3 = abs(board[r+2][c])
-                if num1 == num2 and num2 == num3 and num1 != 0:
+                if num1 == num2 == num3 and num1 != 0:
                     board[r][c] = -num1
                     board[r+1][c] = -num2
                     board[r+2][c] = -num3
