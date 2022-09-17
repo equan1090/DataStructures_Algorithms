@@ -9,6 +9,17 @@ class RandomizedCollection:
         self.list.append(val)
         return len(self.hashmap[val]) == 1
 
+    '''
+    {
+    1: (0, 2)
+    2: (3)
+    3: (4, 1)
+    }
+    [1, 3, 1, 2, 3]
+    last = 3
+    idx = 1
+    
+    '''
     def remove(self, val: int) -> bool:
         if not self.hashmap[val]:
             return False
@@ -17,7 +28,7 @@ class RandomizedCollection:
         self.list[idx] = last
         self.hashmap[last].add(idx)
         
-        self.hashmap[last].discard(len(self.list) - 1)
+        self.hashmap[last].remove(len(self.list) - 1)
         self.list.pop()
         return True
 
