@@ -13,9 +13,9 @@ class RandomizedCollection:
     {
     1: (0, 2)
     2: (3)
-    3: (4, 1)
+    3: (1)
     }
-    [1, 3, 1, 2, 3]
+    [1, 3, 1, 2]
     last = 3
     idx = 1
     
