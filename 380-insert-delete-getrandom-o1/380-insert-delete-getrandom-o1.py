@@ -2,34 +2,31 @@ class RandomizedSet:
 
     def __init__(self):
         self.cache = {}
-        self.random = []
+        self.arr = []
 
     def insert(self, val: int) -> bool:
         if val not in self.cache:
-            self.cache[val] = len(self.random)
-            self.random.append(val)
+            self.cache[val] = len(self.arr)
+            self.arr.append(val)
             return True
         return False
-    
-
+    '''
+    {2: 0, 5: 1, 4: 2}
+    [2, 5, 4]
+    '''
     def remove(self, val: int) -> bool:
-        '''
-        {3: 0, 9: 1, 5: 2}
-        [3 9 5]
-        '''    
         if val in self.cache:
-            
             idx = self.cache[val]
-            last = self.random[-1]
+            last = self.arr[-1]
+            self.arr[idx] = last
             self.cache[last] = idx
-            self.random[idx] = last
             del self.cache[val]
-            self.random.pop()
+            self.arr.pop()
             return True
         return False
-
     def getRandom(self) -> int:
-        return random.choice(self.random)
+        return random.choice(self.arr)
+        
 
 
 # Your RandomizedSet object will be instantiated and called as such:
