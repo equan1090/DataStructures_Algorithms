@@ -37,7 +37,7 @@ class Solution:
             left = lNext
             right.next = lNext
             right = rNext
-        return head
+        
             
         
         
