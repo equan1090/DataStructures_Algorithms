@@ -9,13 +9,13 @@ class Solution:
         tail = dummy
         
         cur = head
-        for i in range(n):
+        for _ in range(n):
             cur = cur.next
         
         while cur:
-            cur = cur.next
             tail = tail.next
+            cur = cur.next
         
         tail.next = tail.next.next
-        return dummy.next
         
+        return dummy.next
