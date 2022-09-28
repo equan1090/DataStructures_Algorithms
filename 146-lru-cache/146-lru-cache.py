@@ -1,28 +1,32 @@
 class DoubleLL:
-    
     def __init__(self, key, val):
         self.key = key
         self.val = val
-        self.next = self.prev = None
-        
-    
+        self.next = None
+        self.prev = None
+
 class LRUCache:
 
     def __init__(self, capacity: int):
-        self.capacity = capacity
         self.cache = {}
+        self.capacity = capacity
         self.left = DoubleLL(-1, -1)
         self.right = DoubleLL(-1, -1)
         self.left.next, self.right.prev = self.right, self.left
         
+    def remove(self, node):
+        prev = node.prev
+        nxt = node.next
+        prev.next, nxt.prev = nxt, prev
+        
     def insert(self, node):
         prev = self.right.prev
-        prev.next, node.prev = node, prev
-        node.next, self.right.prev = self.right, node
-    def remove(self, node):
-        prev, nxt = node.prev, node.next
-        prev.next, nxt.prev = nxt, prev
-    
+        node.prev = prev
+        prev.next = node
+        node.next = self.right
+        self.right.prev = node
+        
+        
     def get(self, key: int) -> int:
         if key in self.cache:
             self.remove(self.cache[key])
@@ -37,10 +41,12 @@ class LRUCache:
         
         self.cache[key] = DoubleLL(key, value)
         self.insert(self.cache[key])
+        
         if len(self.cache) > self.capacity:
-            lru = self.left.next
-            self.remove(lru)
-            del self.cache[lru.key]
+            LRU = self.left.next
+            self.remove(LRU)
+            del self.cache[LRU.key]
+            
         
 
 
