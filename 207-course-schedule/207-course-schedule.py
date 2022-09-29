@@ -4,7 +4,6 @@ class Solution:
         
         for a, b in prerequisites:
             graph[a].append(b)
-        
         visited = set()
         visiting = set()
         
@@ -13,20 +12,19 @@ class Solution:
                 return False
         return True
     
-    def hasCycle(self, graph, node, visited, visiting):
+        
+        
+    def hasCycle(self,graph, node, visited, visiting):
         if node in visited:
             return False
-        
         if node in visiting:
             return True
         
         visiting.add(node)
         
-        for neighbor in graph[node]:
-            if self.hasCycle(graph, neighbor, visited, visiting):
+        for nei in graph[node]:
+            if self.hasCycle(graph, nei, visited, visiting):
                 return True
-        
         visiting.remove(node)
         visited.add(node)
-        
         return False
