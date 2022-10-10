@@ -6,13 +6,13 @@ class UndergroundSystem:
 
     def checkIn(self, id: int, stationName: str, t: int) -> None:
         if id not in self.personCheckIn:
-            self.personCheckIn[id] = (stationName, t)
+            self.personCheckIn[id] = (id, stationName, t)
         
 
     def checkOut(self, id: int, stationName: str, t: int) -> None:
         if id in self.personCheckIn:
             
-            stationStart, time = self.personCheckIn.pop(id)
+            ids, stationStart, time = self.personCheckIn.pop(id)
             
 
             if (stationStart, stationName) in self.travelTime:
