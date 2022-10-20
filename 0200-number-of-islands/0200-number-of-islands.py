@@ -18,8 +18,9 @@ class Solution:
         
         visited.add((r, c))
         
-        for dr, dc in directions:
-            self.dfs(grid, r + dr, c + dc, visited)
-
+        self.dfs(grid, r + 1, c, visited)
+        self.dfs(grid, r - 1, c, visited)
+        self.dfs(grid, r, c + 1, visited)
+        self.dfs(grid, r, c - 1, visited)
         return True
         
