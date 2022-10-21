@@ -3,7 +3,7 @@ class Solution:
             # For x = 0 and x = 1
             if x <= 1: return x
 
-            start = 2
+            start = 0
             # We know that a square root of any number is at most the mid, not more than that
             end = x // 2
 
