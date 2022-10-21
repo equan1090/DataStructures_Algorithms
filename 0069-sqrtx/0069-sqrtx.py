@@ -9,7 +9,7 @@ class Solution:
 
             # Apply Binary Search since range 1 to x is in sorted order
             while start <= end:
-                mid = start + (end - start)  // 2
+                mid = (end + start)  // 2
 
                 square = mid * mid
                 # If square of a number is equal to x, we got the square root
