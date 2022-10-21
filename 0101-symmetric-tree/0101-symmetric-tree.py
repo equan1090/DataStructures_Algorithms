@@ -4,21 +4,17 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-
 class Solution:
-    def isSymmetric(self, root: TreeNode) -> bool:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
         if not root:
-            return False
-        else:
-            return self.isSameTree(root.left, root.right)
-
-    def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
-        if p is None and q is None:
             return True
-        if p is None or q is None:
+        
+        return self.sameTree(root.left, root.right)
+        
+    def sameTree(self, p, q):
+        if not p and not q:
+            return True
+        if not p or not q or p.val != q.val:
             return False
         
-        if p.val != q.val:
-            return False
-        
-        return self.isSameTree(p.left, q.right) and self.isSameTree(p.right, q.left)
+        return self.sameTree(p.left, q.right) and self.sameTree(p.right, q.left)
