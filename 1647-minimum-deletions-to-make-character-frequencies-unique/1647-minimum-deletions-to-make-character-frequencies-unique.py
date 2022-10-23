@@ -1,15 +1,13 @@
 class Solution:
     def minDeletions(self, s: str) -> int:
-        count = {}
-        res = 0
+        freq = {}
         for c in s:
-            count[c] = 1 + count.get(c, 0)
-        
+            freq[c] = 1 + freq.get(c, 0)
+        res = 0
         countSet = set()
-        for char, val in count.items():
-            while val > 0 and val in countSet:
-                val -= 1
-                
+        for char, count in freq.items():
+            while count > 0 and count in countSet:
+                count -= 1
                 res += 1
-            countSet.add(val)
+            countSet.add(count)
         return res
