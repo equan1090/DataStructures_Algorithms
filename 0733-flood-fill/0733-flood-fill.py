@@ -1,7 +1,6 @@
 class Solution:
     def floodFill(self, image: List[List[int]], sr: int, sc: int, newColor: int) -> List[List[int]]:
-        color = image[sr][sc]
-        self.dfs(image, sr, sc, newColor, color)
+        self.dfs(image, sr, sc, newColor, image[sr][sc])
         
         return image
     def dfs(self, image, sr, sc, newColor, color):
