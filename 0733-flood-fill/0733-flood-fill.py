@@ -5,10 +5,14 @@ class Solution:
         
         return image
     def dfs(self, image, sr, sc, newColor, color):
-        if sr not in range(len(image)): return
-        if sc not in range(len(image[0])): return
-        if image[sr][sc] == newColor: return
-        if image[sr][sc] != color: return
+        rowbounds = 0 <= sr < len(image)
+        colbounds = 0 <= sc < len(image[0])
+        if not rowbounds or not colbounds:
+            return
+        if image[sr][sc] == newColor:
+            return
+        if image[sr][sc] != color: 
+            return
 
         image[sr][sc] = newColor
 
