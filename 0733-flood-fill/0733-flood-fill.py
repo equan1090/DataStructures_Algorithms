@@ -7,13 +7,8 @@ class Solution:
     def dfs(self, image, sr, sc, newColor, color):
         rowbounds = 0 <= sr < len(image)
         colbounds = 0 <= sc < len(image[0])
-        if not rowbounds or not colbounds:
+        if not rowbounds or not colbounds or image[sr][sc] == newColor or image[sr][sc] != color:
             return
-        if image[sr][sc] == newColor:
-            return
-        if image[sr][sc] != color: 
-            return
-
         image[sr][sc] = newColor
 
         self.dfs(image, sr + 1, sc, newColor, color)
