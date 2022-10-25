@@ -15,6 +15,7 @@ class Solution:
         self.dfs(image, sr - 1, sc, newColor, color)
         self.dfs(image, sr, sc + 1, newColor, color)
         self.dfs(image, sr, sc - 1, newColor, color)
+        return image
 
     
         
