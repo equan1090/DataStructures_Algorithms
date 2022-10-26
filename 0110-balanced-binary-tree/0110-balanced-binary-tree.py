@@ -4,18 +4,19 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution(object):
-    def isBalanced(self, root):
-        """
-        :type root: TreeNode
-        :rtype: bool
-        """ 
-        if root == None:
+class Solution:
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        if not root:
             return True
-        l = self.depth(root.left)
-        r = self.depth(root.right)
-        return (abs(l-r) <2) and self.isBalanced(root.left) and self.isBalanced(root.right)
-    
-    def depth(self,node):
-        if node == None: return 0
-        return max(self.depth(node.left),self.depth(node.right))+1
+        
+        l = self.dfs(root.left)
+        r = self.dfs(root.right)
+        
+        return abs(l - r) < 2 and self.isBalanced(root.left) and self.isBalanced(root.right)
+        
+        
+    def dfs(self, root):
+        if not root:
+            return 0
+        
+        return 1 + max(self.dfs(root.left), self.dfs(root.right))
