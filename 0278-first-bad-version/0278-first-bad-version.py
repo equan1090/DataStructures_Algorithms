@@ -10,7 +10,7 @@ class Solution:
         r = n
         l = 0
         while(l<=r):
-            mid = l + (r-l)//2
+            mid = (l + r)//2
             if isBadVersion(mid):
                 r = mid-1
             else:
