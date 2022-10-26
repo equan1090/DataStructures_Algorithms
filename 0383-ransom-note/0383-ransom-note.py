@@ -5,6 +5,6 @@ class Solution:
 
         
         for k in ransomNoteDict:
-            if k not in magazineDict or magazineDict[k] < ransomNoteDict[k]:
+            if magazineDict[k] < ransomNoteDict[k]:
                 return False
         return True
