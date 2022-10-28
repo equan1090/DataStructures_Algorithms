@@ -16,3 +16,8 @@ class Solution:
                 else:
                     stack.append(int(left / right))
         return stack.pop()
+    '''
+    
+    [10 6 -132 ]
+    
+    '''
