@@ -10,14 +10,14 @@ class Solution:
     def dfs(self, grid, r, c, visited):
         rowbounds = 0 <= r < len(grid)
         colbounds = 0 <= c < len(grid[0])
+        directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
         
         if not rowbounds or not colbounds or grid[r][c] == '0' or (r, c) in visited:
             return False
         
         visited.add((r, c))
         
-        self.dfs(grid, r  + 1, c, visited)
-        self.dfs(grid, r - 1, c, visited)
-        self.dfs(grid, r, c + 1, visited)
-        self.dfs(grid, r, c - 1, visited)
+        for dr, dc in directions:
+            self.dfs(grid, r + dr, c + dc, visited)
+
         return True
