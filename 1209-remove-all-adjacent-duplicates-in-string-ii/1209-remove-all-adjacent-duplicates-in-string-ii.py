@@ -5,10 +5,10 @@ class Solution:
         for c in s:
             if not stack or stack[-1][0] != c:
                 stack.append([c, 1])
-                continue
-            else:
-                stack[-1][-1] += 1
             
+            else:
+                stack[-1][-1] += 1   
+                
             if stack and stack[-1][-1] == k:
                 stack.pop()
         
