@@ -6,7 +6,7 @@ class Solution:
             if not stack or stack[-1][0] != c:
                 stack.append([c, 1])
                 continue
-            if stack[-1][0] == c:
+            else:
                 stack[-1][-1] += 1
             
             if stack and stack[-1][-1] == k:
