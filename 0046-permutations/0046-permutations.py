@@ -4,10 +4,13 @@ class Solution:
         return self.dfs(nums, [], [])
     
     def dfs(self, nums, path, res):
+        
         if not nums:
             res.append(path)
-            return 
+            return
         
         for i in range(len(nums)):
             self.dfs(nums[:i] + nums[i+1:], path + [nums[i]], res)
         return res
+        
+        
