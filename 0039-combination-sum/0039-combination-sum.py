@@ -11,5 +11,5 @@ class Solution:
         
         for i in range(len(candidates)):
             self.dfs(candidates[i:], target - candidates[i], path+[candidates[i]], res)
-        path = []
+        
         return res
