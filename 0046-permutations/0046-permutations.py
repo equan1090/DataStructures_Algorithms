@@ -13,4 +13,3 @@ class Solution:
             self.dfs(nums[:i] + nums[i+1:], path + [nums[i]], res)
         return res
         
-        
