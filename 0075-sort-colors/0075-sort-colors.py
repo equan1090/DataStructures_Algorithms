@@ -13,6 +13,12 @@ class Solution:
             elif nums[i] == 2:
                 nums[r], nums[i] = nums[i], nums[r]
                 r -= 1
-                i -= 1
+                continue
             i += 1
         return nums
+    
+    '''
+    [0 1 0 1 2 2]
+       l   r
+         i
+    '''
