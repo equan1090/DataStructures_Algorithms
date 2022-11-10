@@ -15,4 +15,3 @@ class Solution:
                 r -= 1
                 continue
             i += 1
-        return nums
