@@ -10,15 +10,9 @@ class Solution:
             if nums[i] == 0:
                 nums[l], nums[i] = nums[i], nums[l]
                 l += 1
-            elif nums[i] == 2:
+            if nums[i] == 2:
                 nums[r], nums[i] = nums[i], nums[r]
                 r -= 1
                 continue
             i += 1
         return nums
-    
-    '''
-    [0 1 0 1 2 2]
-       l   r
-         i
-    '''
