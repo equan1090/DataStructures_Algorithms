@@ -8,10 +8,13 @@ class Solution:
         i = 0
         while i <= r:
             if nums[i] == 0:
-                nums[l], nums[i] = nums[i], nums[l]
+                nums[i], nums[l] = nums[l], nums[i]
                 l += 1
+            
             if nums[i] == 2:
-                nums[r], nums[i] = nums[i], nums[r]
+                nums[i], nums[r] = nums[r], nums[i]
                 r -= 1
                 continue
+            
             i += 1
+        
