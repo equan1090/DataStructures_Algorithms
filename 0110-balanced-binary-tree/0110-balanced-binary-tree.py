@@ -9,17 +9,17 @@ class Solution:
         if not root:
             return True
         
-        left = self.depth(root.left)
-        right = self.depth(root.right)
+        l = self.dfs(root.left)
+        r = self.dfs(root.right)
         
-        return abs(left - right) <= 1 and self.isBalanced(root.left) and self.isBalanced(root.right)
+        return (abs(l - r) <= 1) and self.isBalanced(root.left) and self.isBalanced(root.right)
         
         
-    def depth(self, node):
-        if not node:
+    def dfs(self, root):
+        if not root:
             return 0
         
-        left = self.depth(node.left)
-        right = self.depth(node.right)
+        l = self.dfs(root.left)
+        r = self.dfs(root.right)
         
-        return 1 + max(left, right)
+        return 1 + max(l, r)
