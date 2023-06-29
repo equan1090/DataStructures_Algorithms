@@ -15,3 +15,5 @@ class Solution:
                 rMax = max(rMax, height[r])
                 res += rMax - height[r]
         return res
+            
+            
