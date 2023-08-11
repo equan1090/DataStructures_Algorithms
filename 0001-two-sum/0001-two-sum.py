@@ -1,11 +1,11 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        checked = {}
+        pairs = {}
         
-        for i, n in enumerate(nums):
-            compliment = target - n
-            if compliment in checked:
-                return [i, checked[compliment]]
+        for i, num in enumerate(nums):
+            compliment = target - num
+            if compliment in pairs:
+                return [i, pairs[compliment]]
             
-            checked[n] = i
-        return [-1, -1]
+            pairs[num] = i
+        return []
