@@ -3,12 +3,13 @@ class Solution:
         stack = []
         
         for val in tokens:
-            if val not in '+-*/':
+            if val not in '/*-+':
                 stack.append(int(val))
             else:
-                right, left = stack.pop(), stack.pop()
+                right = stack.pop()
+                left = stack.pop()
                 if val == '+':
-                    stack.append(right + left)
+                    stack.append(left + right)
                 elif val == '-':
                     stack.append(left - right)
                 elif val == '*':
@@ -16,8 +17,3 @@ class Solution:
                 else:
                     stack.append(int(left / right))
         return stack.pop()
-    '''
-    
-    [10 6 -132 ]
-    
-    '''
