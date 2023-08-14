@@ -7,10 +7,10 @@ class Solution:
         }
         
         stack = []
-        
         for c in s:
             if c in pairs.values():
                 stack.append(c)
+            
             else:
                 if not stack or pairs[c] != stack.pop():
                     return False
